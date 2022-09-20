@@ -1,8 +1,8 @@
 /*
-ÆÄÀÏ¸í : time_server.c
-±â  ´É : time ¼­ºñ½º¸¦ ¼öÇàÇÏ´Â ¼­¹ö
-ÄÄÆÄÀÏ : cc - o time_server time_server.c
-»ç¿ë¹ý : time_server[30000]
+ï¿½ï¿½ï¿½Ï¸ï¿½ : time_server.c
+ï¿½ï¿½  ï¿½ï¿½ : time ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : cc - o time_server time_server.c
+ï¿½ï¿½ï¿½ï¿½ : time_server[30000]
 */
 #include <winsock.h>
 #include <signal.h>
@@ -27,7 +27,7 @@ void init_winsock()
     WORD sversion;
     u_long iMode = 1;
 
-    // winsock »ç¿ëÀ» À§ÇØ ÇÊ¼öÀûÀÓ
+    // winsock ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
     signal(SIGINT, exit_callback);
     sversion = MAKEWORD(1, 1);
     WSAStartup(sversion, &wsadata);
@@ -39,7 +39,7 @@ void init_winsock()
 
 void main(int argc, char* argv[]) {
     struct sockaddr_in server, client;
-    int sock, sock2;                        /* ¼ÒÄÏ¹øÈ£ */
+    int sock, sock2;                        /* ï¿½ï¿½ï¿½Ï¹ï¿½È£ */
     int len;
     char buf[256];
     unsigned int set = 1;
@@ -48,7 +48,7 @@ void main(int argc, char* argv[]) {
     init_winsock();
     if (argc == 2)
         port_no = argv[1];
-    /* ¼ÒÄÏ »ý¼º */
+    /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Server: Can't open stream socket.");
         exit(1);
@@ -56,25 +56,25 @@ void main(int argc, char* argv[]) {
     main_socket = sock;
     //printf("sock = %d\n", sock);
     setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char*)&set, sizeof(set));
-    /* server ¼¼ÆÃ */
+    /* server ï¿½ï¿½ï¿½ï¿½ */
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = inet_addr(ip_addr);   //htonl(INADDR_ANY);
     server.sin_port = htons(atoi(port_no));
 
-    /* bind() È£Ãâ */
+    /* bind() È£ï¿½ï¿½ */
     if (bind(sock, (struct sockaddr*)&server, sizeof(server)) < 0) {
         printf("Server: Can't bind local address.\n");
         exit(1);
     }
-    /* ¼ÒÄÏÀ» ¼öµ¿ ´ë±â¸ðµå·Î ¼¼ÆÃ */
+    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     listen(sock, 5);
 
-    /* iterative  time ¼­ºñ½º ¼öÇà */
+    /* iterative  time ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     printf("Server : waiting connection request.\n");
     len = sizeof(client);
 
     while (1) {
-        /* ¿¬°á¿äÃ»À» ±â´Ù¸² */
+        /* ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ */
         sock2 = accept(sock, (struct sockaddr*)&client, &len);
         //printf("sock2 = %d\n", sock2);
         if (sock2 < 0) {

@@ -1,8 +1,8 @@
 /*
-ÆÄÀÏ¸í : udp_time_server.c
-±â  ´É : time ¼­ºñ½º¸¦ ¼öÇàÇÏ´Â UDP ¼­¹ö
-ÄÄÆÄÀÏ : cc -w -o time_server time_server.c
-»ç¿ë¹ý : udp_time_server [port]
+ï¿½ï¿½ï¿½Ï¸ï¿½ : udp_time_server.c
+ï¿½ï¿½  ï¿½ï¿½ : time ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ UDP ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : cc -w -o time_server time_server.c
+ï¿½ï¿½ï¿½ï¿½ : udp_time_server [port]
 */
 
 #include <winsock.h>
@@ -29,7 +29,7 @@ void init_winsock()
 	WORD sversion;
 	u_long iMode = 1;
 
-	// winsock »ç¿ëÀ» À§ÇØ ÇÊ¼öÀûÀÓ
+	// winsock ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	signal(SIGINT, exit_callback);
 	sversion = MAKEWORD(1, 1);
 	WSAStartup(sversion, &wsadata);
@@ -40,29 +40,29 @@ void init_winsock()
 
 void main(int argc, char* argv[]) {
 	struct sockaddr_in server, client;
-	int sock;                       /* ¼ÒÄÏ¹øÈ£ */
+	int sock;                       /* ï¿½ï¿½ï¿½Ï¹ï¿½È£ */
 	int buf_len, client_len;
 	char buf[256];
 	time_t today;
 	char* ip_addr = TIME_SERVER, * port_no = TIME_PORT;
 
-	if (argc == 2) // default 30000 º¯°æÇÒ ¼ö ÀÖµµ·Ï
+	if (argc == 2) // default 30000 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½
 		port_no = argv[1];
 
     init_winsock();
 
-	/* ¼ÒÄÏ »ý¼º */
+	/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	if ((sock = socket(PF_INET, SOCK_DGRAM, 0)) < 0) {
 		printf("Server: Can't open stream socket.");
 		exit(1);
 	}
     main_socket = sock;
-    /* server ¼¼ÆÃ */
+    /* server ï¿½ï¿½ï¿½ï¿½ */
     memset(&server, 0, sizeof(server));
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = htonl(INADDR_ANY); //inet_addr(ip_addr);
     server.sin_port = htons(atoi(port_no));
-    /* bind() È£Ãâ */
+    /* bind() È£ï¿½ï¿½ */
     if (bind(sock, (struct sockaddr*)&server, sizeof(server)) < 0) {
         printf("Server: Can't bind local address.\n");
         exit(1);
@@ -71,7 +71,7 @@ void main(int argc, char* argv[]) {
     memset(&client, 0, sizeof(client));
     printf("Waiting\n");
     while (1) {
-        /* ¿¬°á¿äÃ»À» ±â´Ù¸² */
+        /* ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ */
         client_len = sizeof(client);
         buf_len = recvfrom(sock, buf, 256, 0, (struct sockaddr*)&client, &client_len);
         if (buf_len < 0) {

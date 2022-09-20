@@ -1,8 +1,8 @@
 /*
-ÆÄÀÏ¸í : time_client.c
-±â  ´É : time ¼­ºñ½º¸¦ ¿ä±¸ÇÏ´Â TCP(¿¬°áÇü) Å¬¶óÀÌ¾ðÆ®
-ÄÄÆÄÀÏ : cc - o time_client time_client.c
-»ç¿ë¹ý : time_client[ip][port] // default´Â 127.0.0.1 30000
+ï¿½ï¿½ï¿½Ï¸ï¿½ : time_client.c
+ï¿½ï¿½  ï¿½ï¿½ : time ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½ä±¸ï¿½Ï´ï¿½ TCP(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : cc - o time_client time_client.c
+ï¿½ï¿½ï¿½ï¿½ : time_client[ip][port] // defaultï¿½ï¿½ 127.0.0.1 30000
 */
 #include <winsock.h>
 #include <signal.h>
@@ -25,7 +25,7 @@ void init_winsock()
     WORD sversion;
     u_long iMode = 1;
 
-    // winsock »ç¿ëÀ» À§ÇØ ÇÊ¼öÀûÀÓ
+    // winsock ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
     signal(SIGINT, exit_callback);
     sversion = MAKEWORD(1, 1);
     WSAStartup(sversion, &wsadata);
@@ -53,13 +53,13 @@ void main(int argc, char* argv[]) {
         exit(0);
     }
     main_socket = sock;
-    /* time ¼­¹öÀÇ ¼ÒÄÏÁÖ¼Ò ±¸Á¶Ã¼ ÀÛ¼º */
+    /* time ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½Û¼ï¿½ */
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = inet_addr(ip_addr);
     server.sin_port = htons(atoi(port_no));
 
     printf("Connecting %s %s\n", ip_addr, port_no);
-    /* ¿¬°á¿äÃ» */
+    /* ï¿½ï¿½ï¿½ï¿½ï¿½Ã» */
     if (connect(sock, (struct sockaddr*)&server, sizeof(server)) < 0) {
         printf("can't connect.\n");
         exit(1);

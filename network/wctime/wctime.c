@@ -1,4 +1,4 @@
-// wctime.c : ctime() °ª Ãâ·Â
+// wctime.c : ctime() ï¿½ï¿½ ï¿½ï¿½ï¿½
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
